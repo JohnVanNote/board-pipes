@@ -1,6 +1,9 @@
-/* begin board.c */
+/* board.c 
+ * 
+ * John Van Note
+ * 2016-10-11
+ */
 #include "board.h"
-#include "csapp.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
@@ -21,9 +24,9 @@ Board createBoard(size_t l, size_t h) {
 	Brd.height = h;
 
 	/* initializes 2-D array */
-	int **emptySpots = (int**)Malloc(sizeof(int*) * l);
+	int **emptySpots = (int**)malloc(sizeof(int*) * l);
 	for(i=0; i<h; i++) {
-		emptySpots[i] = (int*)Malloc(sizeof(int)*h);
+		emptySpots[i] = (int*)malloc(sizeof(int)*h);
 	}
 
 	for(i=0; i<l; i++) {
@@ -57,9 +60,9 @@ Board copyBoard(Board brd) {
 	int h = brd.height;
 
 	/* 2-D array thing */
-	int **cpySpots = (int**)Malloc(sizeof(int*) * l);
+	int **cpySpots = (int**)malloc(sizeof(int*) * l);
 	for(i=0; i<h; i++) {
-		cpySpots[i] = (int*)Malloc(sizeof(int)*h);
+		cpySpots[i] = (int*)malloc(sizeof(int)*h);
 	}
 
 	/* copy, copy, copy */
@@ -112,9 +115,9 @@ void cleanBoard(Board *brd) {
 	int l = brd->length;
 	int h = brd->height;
 	for(i=0; i<h; i++) {
-		Free((*brd).spots[i]);
+		free((*brd).spots[i]);
 	}
-	Free((*brd).spots);
+	free((*brd).spots);
 }
 
 /*
@@ -157,8 +160,8 @@ Board randomMove(Board brd, int val) {
 	
 	/* clean up */
 	for(i=0; i<2; i++)
-		Free(moves[i]);
-	Free(moves);
+		free(moves[i]);
+	free(moves);
 	return brd;
 }
 
@@ -174,9 +177,9 @@ int **findMoves(Board brd, int *pm) {
 	int i,j; /* incrementors */
 
 	/* possibles moves */
-	int **possMoves = (int**)Malloc(sizeof(int*)*l*h);
+	int **possMoves = (int**)malloc(sizeof(int*)*l*h);
 	for(i=0; i<l; i++) {
-		possMoves[i] = (int*)Malloc(sizeof(int)*2);
+		possMoves[i] = (int*)malloc(sizeof(int)*2);
 	}
 
 	for(i=0; i<l; i++) {

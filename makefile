@@ -1,9 +1,20 @@
-build : Fork.c board.c
-	gcc -lpthread -o Fork ./Fork.c ./board.c ./csapp.c
+##
+# makefile
+##
+# John Van Note
+# 2016-10-11
+##
+
+fork='./Fork'
+main='./board'
+cc='gcc'
+flags='-lpthread'
+
+run: compile
+	$(fork).out $(N) $(M)
+
+compile:
+	$(cc) $(fork).c $(main).c $(flags) -o $(fork).out
 	
-test : build
-	./Fork $(N) $(M)
-
-
 clean:
-	\rm ./Fork
+	\rm -f *.out
